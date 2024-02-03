@@ -4,212 +4,271 @@ export const A: Kana[] = [
     {
         kana: 'あ',
         romaji: 'a',
+        audio: '/audio/japanese/anki_author_195754716/1_a.mp3',
     },
     {
         kana: 'い',
-        romaji: 'i'
+        romaji: 'i',
+        audio: '/audio/japanese/anki_author_195754716/2_i.mp3',
     },
     {
         kana: 'う',
-        romaji: 'u'
+        romaji: 'u',
+        audio: '/audio/japanese/anki_author_195754716/3_u.mp3',
     },
     {
         kana: 'え',
-        romaji: 'e'
+        romaji: 'e',
+        audio: '/audio/japanese/anki_author_195754716/4_e.mp3',
     },
     {
         kana: 'お',
-        romaji: 'o'
+        romaji: 'o',
+        audio: '/audio/japanese/anki_author_195754716/5_o.mp3',
     },
 ];
 
 export const K: Kana[] = [
     {
         kana: 'か',
-        romaji: 'ka'
+        romaji: 'ka',
+        audio: '/audio/japanese/anki_author_195754716/6_ka.mp3',
     },
     {
         kana: 'き',
-        romaji: 'ki'
+        romaji: 'ki',
+        audio: '/audio/japanese/anki_author_195754716/7_ki.mp3',
     },
     {
         kana: 'く',
-        romaji: 'ku'
+        romaji: 'ku',
+        audio: '/audio/japanese/anki_author_195754716/8_ku.mp3',
     },
     {
         kana: 'け',
-        romaji: 'ke'
+        romaji: 'ke',
+        audio: '/audio/japanese/anki_author_195754716/9_ke.mp3',
     },
     {
         kana: 'こ',
-        romaji: 'ko'
+        romaji: 'ko',
+        audio: '/audio/japanese/anki_author_195754716/10_ko.mp3',
     },
 ];
 
 export const S: Kana[] = [
     {
         kana: 'さ',
-        romaji: 'sa'
+        romaji: 'sa',
+        audio: '/audio/japanese/anki_author_195754716/11_sa.mp3',
     },
     {
         kana: 'し',
-        romaji: 'shi'
+        romaji: 'shi',
+        audio: '/audio/japanese/anki_author_195754716/12_shi.mp3',
     },
     {
         kana: 'す',
-        romaji: 'su'
+        romaji: 'su',
+        audio: '/audio/japanese/anki_author_195754716/13_su.mp3',
     },
     {
         kana: 'せ',
-        romaji: 'se'
+        romaji: 'se',
+        audio: '/audio/japanese/anki_author_195754716/14_se.mp3',
     },
     {
         kana: 'そ',
-        romaji: 'so'
+        romaji: 'so',
+        audio: '/audio/japanese/anki_author_195754716/15_so.mp3',
     },
 ];
 
 export const T: Kana[] = [
     {
         kana: 'た',
-        romaji: 'ta'
+        romaji: 'ta',
+        audio: '/audio/japanese/anki_author_195754716/16_ta.mp3',
     },
     {
         kana: 'ち',
-        romaji: 'chi'
+        romaji: 'chi',
+        audio: '/audio/japanese/anki_author_195754716/17_chi.mp3',
     },
     {
         kana: 'つ',
-        romaji: 'tsu'
+        romaji: 'tsu',
+        audio: '/audio/japanese/anki_author_195754716/18_tsu.mp3',
     },
     {
         kana: 'て',
-        romaji: 'te'
+        romaji: 'te',
+        audio: '/audio/japanese/anki_author_195754716/19_te.mp3',
     },
     {
         kana: 'と',
-        romaji: 'to'
+        romaji: 'to',
+        audio: '/audio/japanese/anki_author_195754716/20_to.mp3',
     },
 ];
 
 export const N: Kana[] = [
     {
         kana: 'な',
-        romaji: 'na'
+        romaji: 'na',
+        audio: '/audio/japanese/anki_author_195754716/21_na.mp3',
     },
     {
         kana: 'に',
-        romaji: 'ni'
+        romaji: 'ni',
+        audio: '/audio/japanese/anki_author_195754716/22_ni.mp3',
     },
     {
         kana: 'ぬ',
-        romaji: 'nu'
+        romaji: 'nu',
+        audio: '/audio/japanese/anki_author_195754716/23_nu.mp3',
     },
     {
         kana: 'ね',
-        romaji: 'ne'
+        romaji: 'ne',
+        audio: '/audio/japanese/anki_author_195754716/24_ne.mp3',
     },
     {
         kana: 'の',
-        romaji: 'no'
+        romaji: 'no',
+        audio: '/audio/japanese/anki_author_195754716/25_no.mp3',
     },
 ];
 
 export const H: Kana[] = [
     {
         kana: 'は',
-        romaji: 'ha'
+        romaji: 'ha',
+        audio: '/audio/japanese/anki_author_195754716/26_ha.mp3',
     },
     {
         kana: 'ひ',
-        romaji: 'hi'
+        romaji: 'hi',
+        audio: '/audio/japanese/anki_author_195754716/27_hi.mp3',
     },
     {
         kana: 'ふ',
-        romaji: 'fu'
+        romaji: 'fu',
+        audio: '/audio/japanese/anki_author_195754716/28_hu.mp3',
     },
     {
         kana: 'へ',
-        romaji: 'he'
+        romaji: 'he',
+        audio: '/audio/japanese/anki_author_195754716/29_he.mp3',
     },
     {
         kana: 'ほ',
-        romaji: 'ho'
+        romaji: 'ho',
+        audio: '/audio/japanese/anki_author_195754716/30_ho.mp3',
     },
 ];
 
 export const M: Kana[] = [
     {
         kana: 'ま',
-        romaji: 'ma'
+        romaji: 'ma',
+        audio: '/audio/japanese/anki_author_195754716/31_ma.mp3',
     },
     {
         kana: 'み',
-        romaji: 'mi'
+        romaji: 'mi',
+        audio: '/audio/japanese/anki_author_195754716/32_mi.mp3',
     },
     {
         kana: 'む',
-        romaji: 'mu'
+        romaji: 'mu',
+        audio: '/audio/japanese/anki_author_195754716/33_mu.mp3',
     },
     {
         kana: 'め',
-        romaji: 'me'
+        romaji: 'me',
+        audio: '/audio/japanese/anki_author_195754716/34_me.mp3',
     },
     {
         kana: 'も',
-        romaji: 'mo'
+        romaji: 'mo',
+        audio: '/audio/japanese/anki_author_195754716/35_mo.mp3',
     },
 ];
 
 export const Y: Kana[] = [
     {
         kana: 'や',
-        romaji: 'ya'
+        romaji: 'ya',
+        audio: '/audio/japanese/anki_author_195754716/36_ya.mp3',
     },
     {
         kana: 'ゆ',
-        romaji: 'yu'
+        romaji: 'yu',
+        audio: '/audio/japanese/anki_author_195754716/37_yu.mp3',
     },
     {
         kana: 'よ',
-        romaji: 'yo'
+        romaji: 'yo',
+        audio: '/audio/japanese/anki_author_195754716/38_yo.mp3',
     },
 ];
 
 export const R: Kana[] = [
     {
         kana: 'ら',
-        romaji: 'ra'
+        romaji: 'ra',
+        audio: '/audio/japanese/anki_author_195754716/39_ra.mp3',
     },
     {
         kana: 'り',
-        romaji: 'ri'
+        romaji: 'ri',
+        audio: '/audio/japanese/anki_author_195754716/40_ri.mp3',
     },
     {
         kana: 'る',
-        romaji: 'ru'
+        romaji: 'ru',
+        audio: '/audio/japanese/anki_author_195754716/41_ru.mp3',
     },
     {
         kana: 'れ',
-        romaji: 're'
+        romaji: 're',
+        audio: '/audio/japanese/anki_author_195754716/42_re.mp3',
     },
     {
         kana: 'ろ',
-        romaji: 'ro'
+        romaji: 'ro',
+        audio: '/audio/japanese/anki_author_195754716/43_ro.mp3',
     },
 ];
 
 export const W_PLUS_N: Kana[] = [
     {
         kana: 'わ',
-        romaji: 'wa'
+        romaji: 'wa',
+        audio: '/audio/japanese/anki_author_195754716/44_wa.mp3',
     },
     {
         kana: 'を',
-        romaji: 'wo'
+        romaji: 'wo',
+        audio: '/audio/japanese/anki_author_195754716/45_wo.mp3',
     },
     {
         kana: 'ｎ',
-        romaji: 'n'
+        romaji: 'n',
+        audio: '/audio/japanese/anki_author_195754716/46_n.mp3',
     },
+];
+
+export const ALL_HIRAGANA: Kana[] = [
+    ...A,
+    ...K,
+    ...S,
+    ...T,
+    ...N,
+    ...H,
+    ...M,
+    ...Y,
+    ...R,
+    ...W_PLUS_N,
 ];
