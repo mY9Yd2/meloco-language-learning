@@ -3,8 +3,8 @@ import { Kana } from '../../japanese/kanaType';
 
 const props = defineProps<{ options: Kana[] }>();
 defineEmits<{
-        optionSelect: [chosen: string]
-    }>();
+    onOptionSelectedEvent: [chosen: string]
+  }>();
 </script>
 
 <template>
@@ -14,7 +14,7 @@ defineEmits<{
       :key="option.romaji"
       type="button"
       className="p-10 text-4xl rounded-full border-2 border-neutral-700"
-      @click="$emit('optionSelect', option.kana)"
+      @click="$emit('onOptionSelectedEvent', option.kana)"
     >
       {{ option.romaji }}
     </button>

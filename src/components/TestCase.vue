@@ -12,7 +12,7 @@ let target = ref<Kana>();
 let isSuccess = ref<boolean>(false);
 
 /**
- * Create a new test case on initialisation
+ * Create a new test case before mounting the component
  */
 onBeforeMount(() => {
     createNewTestCase();
@@ -28,9 +28,9 @@ function createNewTestCase() {
 }
 
 /**
- * Check the selected option and create a new test case
+ * Check the selected option's kana and create a new test case
  * 
- * @param kana - The selected option
+ * @param kana - The selected option's kana
  */
 function checkSelectedOption(kana: string) {
     if (kana === target.value?.kana) {
@@ -83,7 +83,7 @@ function targetBeforeEnter(el: Element) {
     </Transition>
     <OptionButtons
       :options="options"
-      @option-select="checkSelectedOption"
+      @on-option-selected-event="checkSelectedOption"
     />
   </div>
 </template>
