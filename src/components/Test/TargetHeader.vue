@@ -7,7 +7,7 @@ defineEmits(['onAnimationEnd']);
 
 <template>
   <h1
-    class="font-bold text-8xl text-center"
+    class="h-1/6 font-bold text-8xl text-center"
     @animationend="$emit('onAnimationEnd')"
   >
     {{ props.target }}

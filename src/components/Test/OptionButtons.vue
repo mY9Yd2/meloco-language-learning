@@ -61,13 +61,13 @@ function onClick(kana: Kana) {
 </script>
 
 <template>
-  <div className="grid grid-cols-1 gap-4">
+  <div className="h-3/6 grid grid-cols-2 sm:grid-cols-2 gap-4 content-center">
     <button
       v-for="option in props.options"
       :key="option.romaji"
       :ref="addButton"
       type="button"
-      className="p-10 text-4xl rounded-full border-2 border-neutral-700"
+      className="max-h-28 p-2 md:p-10 text-4xl rounded-full border-2 border-neutral-700"
       @click="onClick(option)"
     >
       {{ option.romaji }}
