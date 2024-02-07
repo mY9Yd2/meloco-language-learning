@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, inject, onBeforeUpdate, onUpdated } from 'vue';
+import { Ref, inject, onUpdated } from 'vue';
 import { Kana } from '../../japanese/kanaType';
 
 const props = defineProps<{ options: Kana[] }>();
@@ -8,11 +8,6 @@ const buttonRefs: HTMLButtonElement[] = [];
 const emit = defineEmits<{
     onOptionSelectedEvent: [chosenKana: string]
   }>();
-
-/**
- * Clear the array before update
- */
-onBeforeUpdate(() => buttonRefs.length = 0);
 
 /**
  * Enable buttons and reset it's style on update
