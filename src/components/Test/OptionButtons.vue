@@ -4,7 +4,7 @@ import { Kana } from '../../japanese/kanaType';
 
 const props = defineProps<{ options: Kana[] }>();
 const target = inject<Ref<Kana>>('target');
-const buttons: HTMLButtonElement[] = [];
+const buttonRefs: HTMLButtonElement[] = [];
 const emit = defineEmits<{
     onOptionSelectedEvent: [chosenKana: string]
   }>();
@@ -12,30 +12,17 @@ const emit = defineEmits<{
 /**
  * Clear the array before update
  */
-onBeforeUpdate(() => buttons.length = 0);
+onBeforeUpdate(() => buttonRefs.length = 0);
 
 /**
  * Enable buttons and reset it's style on update
  */
 onUpdated(() => {
-    buttons.forEach((button) => {
+    buttonRefs.forEach((button) => {
         button.classList.remove('successful', 'failed', 'solution', 'neutral');
         button.disabled = false;
     });
 });
-
-/**
- * Add the button to the buttons array
- * 
- * @param el - Button element
- */
-// TODO: any type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function addButton(el: any) {
-    if (el) {
-        buttons.push(el);
-    }
-}
 
 /**
  * Add CSS classes to the buttons and emit
@@ -44,7 +31,7 @@ function addButton(el: any) {
  * @param kana - The selected kana
  */
 function onClick(kana: Kana) {
-    buttons.forEach((button) => {
+    buttonRefs.forEach((button) => {
         button.disabled = true;
         if (button.textContent === kana.romaji && kana.romaji === target?.value.romaji) {
             button.classList.add('successful');
@@ -65,7 +52,7 @@ function onClick(kana: Kana) {
     <button
       v-for="option in props.options"
       :key="option.romaji"
-      :ref="addButton"
+      ref="buttonRefs"
       type="button"
       className="max-h-28 p-2 md:p-10 text-4xl rounded-full border-2 border-neutral-700"
       @click="onClick(option)"
