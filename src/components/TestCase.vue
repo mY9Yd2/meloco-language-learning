@@ -71,10 +71,10 @@ function startAnimation(kana: string) {
 }
 
 /**
- * Change the audio src after the Header is mounted
+ * Change the audio src before the Header is mounted
  */
 function onHeaderMounted() {    
-    targetAudio.value.src = target.value.audio;
+    targetAudio.value.src = target.value.audio;    
 }
 
 /**
@@ -97,7 +97,7 @@ function onAnimationEnd() {
       :class="targetAnimationClass"
       :target="target.kana"
       @on-animation-end="onAnimationEnd"
-      @vue:mounted="onHeaderMounted"
+      @vue:before-mount="onHeaderMounted"
     />
     <OptionButtons
       :options="options"
