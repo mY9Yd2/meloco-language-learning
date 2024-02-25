@@ -254,7 +254,7 @@ export const W_PLUS_N: Kana[] = [
         audio: '/audio/japanese/anki_author_195754716/45_wo.mp3',
     },
     {
-        kana: 'ｎ',
+        kana: 'ん',
         romaji: 'n',
         audio: '/audio/japanese/anki_author_195754716/46_n.mp3',
     },
