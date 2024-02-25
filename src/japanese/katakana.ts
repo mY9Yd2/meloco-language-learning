@@ -260,15 +260,45 @@ export const W_PLUS_N: Kana[] = [
     },
 ];
 
-export const ALL_KATAKANA: Kana[] = [
-    ...A,
-    ...K,
-    ...S,
-    ...T,
-    ...N,
-    ...H,
-    ...M,
-    ...Y,
-    ...R,
-    ...W_PLUS_N,
+export const CATEGORIES = [
+    {
+        name: 'A',
+        category: A,
+    },
+    {
+        name: 'K',
+        category: K,
+    },
+    {
+        name: 'S',
+        category: S,
+    },
+    {
+        name: 'T',
+        category: T,
+    },
+    {
+        name: 'N',
+        category: N,
+    },
+    {
+        name: 'H',
+        category: H,
+    },
+    {
+        name: 'M',
+        category: M,
+    },
+    {
+        name: 'Y',
+        category: Y,
+    },
+    {
+        name: 'R',
+        category: R,
+    },
+    {
+        name: 'W + N',
+        category: W_PLUS_N,
+    },
 ];

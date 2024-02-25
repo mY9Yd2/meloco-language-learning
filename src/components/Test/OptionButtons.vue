@@ -22,17 +22,17 @@ onUpdated(() => {
 /**
  * Add CSS classes to the buttons and emit
  * onOptionSelectedEvent at the end
- * 
+ *
  * @param kana - The selected kana
  */
 function onClick(kana: Kana) {
     buttonRefs.forEach((button) => {
         button.disabled = true;
-        if (button.textContent === kana.romaji && kana.romaji === target?.value.romaji) {
+        if (button.innerText === kana.romaji && kana.romaji === target?.value.romaji) {
             button.classList.add('successful');
-        } else if (button.textContent === kana.romaji) {
+        } else if (button.innerText === kana.romaji) {
             button.classList.add('failed');
-        } else if (button.textContent === target?.value.romaji) {
+        } else if (button.innerText === target?.value.romaji) {
             button.classList.add('solution');
         } else {
             button.classList.add('neutral');
@@ -43,7 +43,7 @@ function onClick(kana: Kana) {
 </script>
 
 <template>
-  <div className="h-3/6 grid grid-cols-2 sm:grid-cols-2 gap-4 content-center">
+  <div className="h-3/6 grid grid-cols-2 gap-4 content-center">
     <button
       v-for="option in props.options"
       :key="option.romaji"
@@ -76,5 +76,9 @@ button.successful {
 button.solution {
   background-color: #00ffff;
   color: black;
+}
+
+div button:not(:nth-child(4)):last-child {
+  grid-column: span 2 / span 2;
 }
 </style>

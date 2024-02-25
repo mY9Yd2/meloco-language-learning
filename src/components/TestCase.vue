@@ -1,13 +1,33 @@
 <script setup lang="ts">
 import TargetHeader from './Test/TargetHeader.vue';
 import OptionButtons from './Test/OptionButtons.vue';
-import { onBeforeMount, onMounted, ref, provide, reactive } from 'vue';
+import { onBeforeMount, ref, provide, reactive } from 'vue';
 import { sampleSize, sample } from 'lodash';
 import { Kana } from '../japanese/kanaType';
 import * as hiragana from '../japanese/hiragana';
-// import * as katakana from '../japanese/katakana';
+import * as katakana from '../japanese/katakana';
+import { useRoute } from 'vue-router';
 
-const selection = hiragana.ALL_HIRAGANA;
+const route = useRoute();
+
+let selectedCategories: {
+    name: string,
+    category: Kana[],
+}[];
+const isStudyMode = route.query.studyMode === '1';
+const routeSelectedCategoriesName: string[] = JSON.parse(route.query.selectedCategoriesName);
+switch (route.query.test) {
+case 'selectHiraganaBasic':
+    selectedCategories = hiragana.CATEGORIES.filter((category) => routeSelectedCategoriesName.includes(category.name));
+    break;
+case 'selectKatakanaBasic':
+    selectedCategories = katakana.CATEGORIES.filter((category) => routeSelectedCategoriesName.includes(category.name));
+    break;
+default:
+    throw new Error('There is no implementation for this test');
+}
+
+const selection = Array.from(selectedCategories, (category) => category.category).flat();
 const options = ref<Kana[]>([]);
 const target = ref<Kana>({
     kana: '',
@@ -40,30 +60,29 @@ onBeforeMount(() => {
 });
 
 /**
- * After the component is mounted, play the target audio file
- */
-onMounted(() => {
-    targetAudio.value.src = target.value.audio;
-});
-
-/**
  * Create a new test case
+ *
+ * The previous target kana cannot be a new target
  */
 function createNewTestCase() {
-    const newSelection = selection.filter((kana) => kana.kana !== target.value.kana);
-    options.value = sampleSize(newSelection, 4);
-    target.value = sample(options.value)!;
+    options.value = sampleSize(selection, 4);
+    target.value = sample(options.value.filter((kana) => kana.kana !== target.value.kana));
 }
 
 /**
  * Start the animation
- * 
+ *
+ * and play the audio file on succesful hit, when the study mode is disabled
+ *
  * @param kana - The selected option's kana
  */
-function startAnimation(kana: string) {    
+function onOptionSelectedEvent(kana: string) {
     if (kana === target.value.kana) {
         targetAnimationClass.target__successful = true;
         targetAnimationClass.animate__bounceOut = true;
+        if (!isStudyMode) {
+            targetAudio.value.src = target.value.audio;
+        }
     } else {
         targetAnimationClass.target__failed = true;
         targetAnimationClass.animate__tada = true;
@@ -72,9 +91,13 @@ function startAnimation(kana: string) {
 
 /**
  * Change the audio src before the Header is mounted
+ *
+ * Only when the study mode is enabled
  */
-function onHeaderMounted() {    
-    targetAudio.value.src = target.value.audio;    
+function onHeaderMounted() {
+    if (isStudyMode) {
+        targetAudio.value.src = target.value.audio;
+    }
 }
 
 /**
@@ -101,7 +124,7 @@ function onAnimationEnd() {
     />
     <OptionButtons
       :options="options"
-      @on-option-selected-event="startAnimation"
+      @on-option-selected-event="onOptionSelectedEvent"
     />
   </div>
 </template>

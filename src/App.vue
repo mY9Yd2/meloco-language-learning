@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TestCase from './components/TestCase.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <TestCase />
+  <router-view />
 </template>
