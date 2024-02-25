@@ -2,7 +2,7 @@
 
 The app is currently under development
 
-The application is intended to be a kind of clone of the [Hiragana Pro](https://play.google.com/store/apps/details?id=com.myapps.hiragana) and [Katakana Pro](https://play.google.com/store/apps/details?id=com.myapps.katakana) applications.
+The application is take some idea from the [Hiragana Pro](https://play.google.com/store/apps/details?id=com.myapps.hiragana) and [Katakana Pro](https://play.google.com/store/apps/details?id=com.myapps.katakana) applications. But I also add my own taste to it.
 
 # License
 
