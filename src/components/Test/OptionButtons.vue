@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { Ref, inject, onUpdated } from 'vue';
+import { onUpdated, ref } from 'vue';
 import { Kana } from '../../japanese/kanaType';
 
-const props = defineProps<{ options: Kana[] }>();
-const target = inject<Ref<Kana>>('target');
-const buttonRefs: HTMLButtonElement[] = [];
+const props = defineProps<{
+  options: Kana[],
+  target: Kana
+}>();
+const buttonRefs = ref<HTMLButtonElement[]>([]);
 const emit = defineEmits<{
     onOptionSelectedEvent: [chosenKana: string]
   }>();
@@ -13,7 +15,7 @@ const emit = defineEmits<{
  * Enable buttons and reset it's style on update
  */
 onUpdated(() => {
-    buttonRefs.forEach((button) => {
+    buttonRefs.value.forEach((button) => {
         button.classList.remove('successful', 'failed', 'solution', 'neutral');
         button.disabled = false;
     });
@@ -26,13 +28,13 @@ onUpdated(() => {
  * @param kana - The selected kana
  */
 function onClick(kana: Kana) {
-    buttonRefs.forEach((button) => {
+    buttonRefs.value.forEach((button) => {
         button.disabled = true;
-        if (button.innerText === kana.romaji && kana.romaji === target?.value.romaji) {
+        if (button.innerText === kana.romaji && kana.romaji === props.target.romaji) {
             button.classList.add('successful');
         } else if (button.innerText === kana.romaji) {
             button.classList.add('failed');
-        } else if (button.innerText === target?.value.romaji) {
+        } else if (button.innerText === props.target.romaji) {
             button.classList.add('solution');
         } else {
             button.classList.add('neutral');

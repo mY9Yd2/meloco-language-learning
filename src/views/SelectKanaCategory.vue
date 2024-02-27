@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IconSchool } from '@tabler/icons-vue';
 import { Kana } from '../japanese/kanaType';
-import { Ref, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 defineProps<{
@@ -17,7 +17,7 @@ const route = useRoute();
  * The variable is just a dependency to trigger a recompute
  */
 const trigger = ref(false);
-const buttonRefs: Ref<HTMLButtonElement[]> = ref([]);
+const buttonRefs = ref<HTMLButtonElement[]>([]);
 /**
  * Enable the start button only if there is
  * at least one category is selected
@@ -34,8 +34,8 @@ const isStartButtonDisabled = computed(() => {
 
     return true;
 });
-let toggleAllButtonRef: HTMLButtonElement;
-let toggleStudyButtonRef: HTMLButtonElement;
+const toggleAllButtonRef = ref<HTMLButtonElement | null>(null);
+const toggleStudyButtonRef = ref<HTMLButtonElement | null>(null);
 
 /**
  * Toggle on/off whether or not to include the category in the test
@@ -44,11 +44,11 @@ let toggleStudyButtonRef: HTMLButtonElement;
  */
 function onCategoryClick(event: MouseEvent) {
     trigger.value = !trigger.value;
-    const button: HTMLButtonElement = event.target;
+    const button = event.target as HTMLButtonElement;
 
     if (button.dataset.include) {
         button.dataset.include = '';
-        toggleAllButtonRef.dataset.include = '';
+        toggleAllButtonRef.value!.dataset.include = '';
     } else {
         button.dataset.include = 'true';
     }
@@ -59,13 +59,13 @@ function onCategoryClick(event: MouseEvent) {
  */
 function onCategoryToggleAllClick() {
     trigger.value = !trigger.value;
-    if (toggleAllButtonRef.dataset.include) {
-        toggleAllButtonRef.dataset.include = '';
+    if (toggleAllButtonRef.value?.dataset.include) {
+        toggleAllButtonRef.value.dataset.include = '';
         buttonRefs.value.forEach((button) => {
             button.dataset.include = '';
         });
     } else {
-        toggleAllButtonRef.dataset.include = 'true';
+        toggleAllButtonRef.value!.dataset.include = 'true';
         buttonRefs.value.forEach((button) => {
             button.dataset.include = 'true';
         });
@@ -76,12 +76,12 @@ function onCategoryToggleAllClick() {
  * Study mode on/off
  */
 function toggleStudyModeClick() {
-    if (toggleStudyButtonRef.dataset.studyMode) {
-        toggleStudyButtonRef.dataset.studyMode = '';
-        toggleStudyButtonRef.firstElementChild?.classList.add('opacity-50');
+    if (toggleStudyButtonRef.value?.dataset.studyMode) {
+        toggleStudyButtonRef.value.dataset.studyMode = '';
+        toggleStudyButtonRef.value.firstElementChild?.classList.add('opacity-50');
     } else {
-        toggleStudyButtonRef.dataset.studyMode = 'true';
-        toggleStudyButtonRef.firstElementChild?.classList.remove('opacity-50');
+        toggleStudyButtonRef.value!.dataset.studyMode = 'true';
+        toggleStudyButtonRef.value!.firstElementChild?.classList.remove('opacity-50');
     }
 }
 
@@ -96,8 +96,8 @@ function startTest() {
         }
     });
     router.push({ name: 'test', query: {
-        test: route.name,
-        studyMode: toggleStudyButtonRef.dataset.studyMode ? 1 : 0,
+        test: route.name as string,
+        studyMode: toggleStudyButtonRef.value?.dataset.studyMode ? 1 : 0,
         selectedCategoriesName: JSON.stringify(selectedCategoriesName)
     }});
 }
@@ -128,7 +128,7 @@ function startTest() {
       data-study-mode="true"
       @click="toggleStudyModeClick"
     >
-      <IconSchool size="32" />
+      <IconSchool :size="32" />
     </button>
   </fieldset>
 

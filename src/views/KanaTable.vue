@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import { Kana } from '../japanese/kanaType';
 import { useRoute } from 'vue-router';
 
-const table = ref<HTMLTableElement>();
+const table = ref<HTMLTableElement | null>(null);
 const targetAudio = ref<HTMLAudioElement>(new Audio());
 defineProps<{
   categories: {
@@ -33,7 +33,7 @@ onMounted(() => {
         // n (x at the beginning of the new row)
         const row = table.value?.insertRow();
         const cell = table.value?.rows[9].cells[5];
-        row?.appendChild(cell);
+        row?.appendChild(cell!);
     }
 });
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TargetHeader from './Test/TargetHeader.vue';
 import OptionButtons from './Test/OptionButtons.vue';
-import { onBeforeMount, ref, provide, reactive } from 'vue';
+import { onBeforeMount, ref, reactive } from 'vue';
 import { sampleSize, sample } from 'lodash';
 import { Kana } from '../japanese/kanaType';
 import * as hiragana from '../japanese/hiragana';
@@ -15,7 +15,8 @@ let selectedCategories: {
     category: Kana[],
 }[];
 const isStudyMode = route.query.studyMode === '1';
-const routeSelectedCategoriesName: string[] = JSON.parse(route.query.selectedCategoriesName);
+const routeSelectedCategoriesName: string[] = JSON.parse(route.query.selectedCategoriesName as string);
+
 switch (route.query.test) {
 case 'selectHiraganaBasic':
     selectedCategories = hiragana.CATEGORIES.filter((category) => routeSelectedCategoriesName.includes(category.name));
@@ -43,8 +44,6 @@ const targetAnimationClass = reactive({
     target__failed: false,
 });
 
-provide('target', target);
-
 /**
  * Play the audio file on src change
  */
@@ -66,7 +65,7 @@ onBeforeMount(() => {
  */
 function createNewTestCase() {
     options.value = sampleSize(selection, 4);
-    target.value = sample(options.value.filter((kana) => kana.kana !== target.value.kana));
+    target.value = sample(options.value.filter((kana) => kana.kana !== target.value.kana))!;
 }
 
 /**
@@ -124,6 +123,7 @@ function onAnimationEnd() {
     />
     <OptionButtons
       :options="options"
+      :target="target"
       @on-option-selected-event="onOptionSelectedEvent"
     />
   </div>
