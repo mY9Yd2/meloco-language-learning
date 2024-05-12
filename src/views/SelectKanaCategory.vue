@@ -109,8 +109,7 @@ function startTest() {
       Practice
     </legend>
     <button
-      id="startButton"
-      className="bg-[#4d0c4c] text-[#7a4a7a] rounded-lg w-full p-2 text-center"
+      className="bg-[#0d4e0e] disabled:bg-[#4d0c4c] text-[#00ff00] disabled:text-[#7a4a7a] rounded-lg w-full p-2 text-center"
       :disabled="isStartButtonDisabled"
       @click="startTest"
     >
@@ -168,10 +167,5 @@ button[data-include="true"],
 button[data-study-mode="true"] {
     background-color: #333333;
     border-color: #666666;
-}
-
-#startButton:not(:disabled) {
-  background-color: #0d4e0e;
-  color: #00ff00;
 }
 </style>
