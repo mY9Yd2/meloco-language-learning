@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
-import 'animate.css';
 import './style.css';
 import * as hiragana from './japanese/hiragana';
 import * as katakana from './japanese/katakana';
