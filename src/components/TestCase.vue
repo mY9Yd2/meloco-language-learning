@@ -2,7 +2,7 @@
 import TargetHeader from './Test/TargetHeader.vue';
 import OptionButtons from './Test/OptionButtons.vue';
 import { onBeforeMount, ref, reactive } from 'vue';
-import { sampleSize, sample } from 'lodash';
+import { sample, sampleSize } from '../utils/utils';
 import { Kana } from '../japanese/kanaType';
 import * as hiragana from '../japanese/hiragana';
 import * as katakana from '../japanese/katakana';
