@@ -8,6 +8,7 @@ import TestCase from './components/TestCase.vue';
 import HomePage from './views/HomePage.vue';
 import KanaTable from './views/KanaTable.vue';
 import SelectKanaCategory from './views/SelectKanaCategory.vue';
+import NotFound from './views/NotFound.vue';
 
 const routes = [
     { path: '/', name: 'home', component: HomePage },
@@ -34,6 +35,7 @@ const routes = [
             categories: katakana.CATEGORIES
         }
     },
+    { path: '/:pathMatch(.*)', component: NotFound },
 ];
 
 const router = createRouter({
