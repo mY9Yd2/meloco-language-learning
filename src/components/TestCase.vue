@@ -113,7 +113,7 @@ function onAnimationEnd() {
 </script>
 
 <template>
-  <div className="flex flex-col justify-evenly h-screen">
+  <div class="flex flex-col justify-evenly h-screen">
     <TargetHeader
       :key="target.kana"
       :class="targetAnimationClass"

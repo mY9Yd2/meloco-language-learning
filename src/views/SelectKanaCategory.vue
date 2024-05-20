@@ -104,12 +104,12 @@ function startTest() {
 </script>
 
 <template>
-  <fieldset className="border-2 border-green-700 p-5 my-5 text-2xl">
-    <legend className="px-3">
+  <fieldset class="border-2 border-green-700 p-5 my-5 text-2xl">
+    <legend class="px-3">
       Practice
     </legend>
     <button
-      className="bg-[#0d4e0e] disabled:bg-[#4d0c4c] text-[#00ff00] disabled:text-[#7a4a7a] rounded-lg w-full p-2 text-center"
+      class="bg-[#0d4e0e] disabled:bg-[#4d0c4c] text-[#00ff00] disabled:text-[#7a4a7a] rounded-lg w-full p-2 text-center"
       :disabled="isStartButtonDisabled"
       @click="startTest"
     >
@@ -117,13 +117,13 @@ function startTest() {
     </button>
   </fieldset>
 
-  <fieldset className="border-2 border-green-700 px-5 my-5 text-2xl">
-    <legend className="px-3">
+  <fieldset class="border-2 border-green-700 px-5 my-5 text-2xl">
+    <legend class="px-3">
       Study mode?
     </legend>
     <button
       ref="toggleStudyButtonRef"
-      className="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2 flex justify-center"
+      class="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2 flex justify-center"
       data-study-mode="true"
       @click="toggleStudyModeClick"
     >
@@ -131,13 +131,13 @@ function startTest() {
     </button>
   </fieldset>
 
-  <fieldset className="border-2 border-green-700 px-5 my-5 text-2xl">
-    <legend className="px-3">
+  <fieldset class="border-2 border-green-700 px-5 my-5 text-2xl">
+    <legend class="px-3">
       Select categories
     </legend>
     <button
       ref="toggleAllButtonRef"
-      className="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
+      class="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
       data-include="true"
       @click="onCategoryToggleAllClick"
     >
@@ -147,11 +147,11 @@ function startTest() {
       <li
         v-for="category in categories"
         :key="category.name"
-        className="text-2xl my-5"
+        class="text-2xl my-5"
       >
         <button
           ref="buttonRefs"
-          className="bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
+          class="bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
           data-include="true"
           @click="onCategoryClick"
         >

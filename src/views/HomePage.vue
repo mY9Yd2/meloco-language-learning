@@ -3,14 +3,14 @@
 
 <template>
   <h1
-    className="text-center text-4xl"
+    class="text-center text-4xl"
   >
     Japanese
   </h1>
-  <hr className="my-5">
-  <ul className="text-center space-y-5 max-w-screen-sm mx-auto">
+  <hr class="my-5">
+  <ul class="text-center space-y-5 max-w-screen-sm mx-auto">
     <li
-      className="rounded-lg bg-[#333333] border-2 border-[#666666]"
+      class="rounded-lg bg-[#333333] border-2 border-[#666666]"
     >
       <router-link
         :to="{ name: 'hiraganaBasic' }"
@@ -20,7 +20,7 @@
       </router-link>
     </li>
     <li
-      className="rounded-lg bg-[#333333] border-2 border-[#666666]"
+      class="rounded-lg bg-[#333333] border-2 border-[#666666]"
     >
       <router-link
         :to="{ name: 'katakanaBasic' }"

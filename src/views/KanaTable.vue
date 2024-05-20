@@ -56,7 +56,7 @@ function onKanaClick(audioSrc: string) {
 
 <template>
   <div
-    className="w-full max-w-screen-sm mx-auto my-4 text-center"
+    class="w-full max-w-screen-sm mx-auto my-4 text-center"
   >
     <router-link
       :to="{ name: selectViewName }"
@@ -67,7 +67,7 @@ function onKanaClick(audioSrc: string) {
   </div>
   <table
     ref="table"
-    className="w-full max-w-screen-sm mx-auto"
+    class="w-full max-w-screen-sm mx-auto"
   >
     <tbody>
       <tr
@@ -77,10 +77,10 @@ function onKanaClick(audioSrc: string) {
         <td
           v-for="kana in category.category"
           :key="kana.kana"
-          className="text-center text-2xl p-1"
+          class="text-center text-2xl p-1"
         >
           <button
-            className="w-12 h-1/6 bg-[#333333] rounded-lg"
+            class="w-12 h-1/6 bg-[#333333] rounded-lg"
             @click="onKanaClick(kana.audio)"
           >
             <div>{{ kana.kana }}</div>
