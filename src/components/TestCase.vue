@@ -14,7 +14,7 @@ let selectedCategories: {
   name: string;
   category: Kana[];
 }[];
-const isStudyMode = route.query.studyMode === '1';
+const isStudyMode = route.query.studyMode === 'true';
 const routeSelectedCategoriesName: string[] = JSON.parse(
   route.query.selectedCategoriesName as string,
 );

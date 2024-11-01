@@ -4,105 +4,73 @@ import type { Kana } from '@/japanese/kanaType';
 import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-defineProps<{
+const props = defineProps<{
   categories: {
     name: string;
     category: Kana[];
   }[];
 }>();
 
+const { categories } = props;
+
 const router = useRouter();
 const route = useRoute();
-/**
- * The variable is just a dependency to trigger a recompute
- */
-const trigger = ref(false);
-const buttonRefs = ref<HTMLButtonElement[]>([]);
+const selectedCategories = ref<string[]>(
+  categories.map(category => category.name),
+);
+const studyMode = ref(true);
+
 /**
  * Enable the start button only if there is
- * at least one category is selected
+ * at least one category selected
  */
-const isStartButtonDisabled = computed(() => {
-  // TODO: Find a better way
-  trigger.value; // dependency
-
-  for (const button of buttonRefs.value) {
-    if (button.dataset.include) {
-      return false;
-    }
-  }
-
-  return true;
-});
-const toggleAllButtonRef = ref<HTMLButtonElement | null>(null);
-const toggleStudyButtonRef = ref<HTMLButtonElement | null>(null);
+const isStartButtonDisabled = computed(
+  () => selectedCategories.value.length === 0,
+);
 
 /**
- * Toggle on/off whether or not to include the category in the test
+ * Toggle on/off a specific category in the test
  *
- * @param event - Mouse event
+ * @param category - The name of the category to toggle
  */
-function onCategoryClick(event: MouseEvent) {
-  trigger.value = !trigger.value;
-  const button = event.target as HTMLButtonElement;
-
-  if (button.dataset.include) {
-    button.dataset.include = '';
-    toggleAllButtonRef.value!.dataset.include = '';
+function onCategoryClick(category: string) {
+  if (selectedCategories.value.includes(category)) {
+    selectedCategories.value = selectedCategories.value.filter(
+      selected => selected !== category,
+    );
   } else {
-    button.dataset.include = 'true';
+    selectedCategories.value.push(category);
   }
 }
 
 /**
- * Toggle on/off whether or not to include all of them in the test
+ * Toggle on/off all categories in the test
  */
 function onCategoryToggleAllClick() {
-  trigger.value = !trigger.value;
-  if (toggleAllButtonRef.value?.dataset.include) {
-    toggleAllButtonRef.value.dataset.include = '';
-    buttonRefs.value.forEach(button => {
-      button.dataset.include = '';
-    });
+  if (selectedCategories.value.length === categories.length) {
+    selectedCategories.value = [];
   } else {
-    toggleAllButtonRef.value!.dataset.include = 'true';
-    buttonRefs.value.forEach(button => {
-      button.dataset.include = 'true';
-    });
+    selectedCategories.value = categories.map(category => category.name);
   }
 }
 
 /**
- * Study mode on/off
+ * Toggle Study Mode on/off and update button appearance
  */
 function toggleStudyModeClick() {
-  if (toggleStudyButtonRef.value?.dataset.studyMode) {
-    toggleStudyButtonRef.value.dataset.studyMode = '';
-    toggleStudyButtonRef.value.firstElementChild?.classList.add('opacity-50');
-  } else {
-    toggleStudyButtonRef.value!.dataset.studyMode = 'true';
-    toggleStudyButtonRef.value!.firstElementChild?.classList.remove(
-      'opacity-50',
-    );
-  }
+  studyMode.value = !studyMode.value;
 }
 
 /**
- * Switch to the test page and pass the necessary query parameters to it
+ * Switch to the test page and pass query parameters for study mode and selected categories
  */
 function startTest() {
-  const selectedCategoriesName: string[] = [];
-  buttonRefs.value.forEach(button => {
-    if (button.dataset.include) {
-      selectedCategoriesName.push(button.innerText);
-    }
-  });
   router.push({
     name: 'test',
     query: {
       test: route.name as string,
-      studyMode: toggleStudyButtonRef.value?.dataset.studyMode ? 1 : 0,
-      selectedCategoriesName: JSON.stringify(selectedCategoriesName),
+      studyMode: studyMode.value.toString(),
+      selectedCategoriesName: JSON.stringify(selectedCategories.value),
     },
   });
 }
@@ -123,9 +91,13 @@ function startTest() {
   <fieldset class="border-2 border-green-700 px-5 my-5 text-2xl">
     <legend class="px-3">Study mode?</legend>
     <button
-      ref="toggleStudyButtonRef"
       class="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2 flex justify-center"
-      data-study-mode="true"
+      :class="
+        studyMode
+          ? 'bg-[#333333] border-[#666666]'
+          : 'bg-[#121212] border-[#333333]'
+      "
+      :title="studyMode ? 'Disable Study Mode' : 'Enable Study Mode'"
       @click="toggleStudyModeClick"
     >
       <IconSchool :size="32" />
@@ -135,9 +107,11 @@ function startTest() {
   <fieldset class="border-2 border-green-700 px-5 my-5 text-2xl">
     <legend class="px-3">Select categories</legend>
     <button
-      ref="toggleAllButtonRef"
       class="my-5 bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
-      data-include="true"
+      :class="{
+        'bg-[#333333] border-[#666666]':
+          selectedCategories.length === categories.length,
+      }"
       @click="onCategoryToggleAllClick"
     >
       Toggle all
@@ -149,10 +123,13 @@ function startTest() {
         class="text-2xl my-5"
       >
         <button
-          ref="buttonRefs"
           class="bg-[#121212] border-2 border-[#333333] rounded-lg w-full p-2"
-          data-include="true"
-          @click="onCategoryClick"
+          :class="{
+            'bg-[#333333] border-[#666666]': selectedCategories.includes(
+              category.name,
+            ),
+          }"
+          @click="onCategoryClick(category.name)"
         >
           {{ category.name }}
         </button>
@@ -162,7 +139,6 @@ function startTest() {
 </template>
 
 <style scoped>
-button[data-include='true'],
 button[data-study-mode='true'] {
   background-color: #333333;
   border-color: #666666;
