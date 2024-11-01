@@ -1,8 +1,6 @@
 <script setup lang="ts">
-
 const props = defineProps<{ target: string }>();
 defineEmits(['onAnimationEnd']);
-
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 export type Kana = {
-    kana: string,
-    romaji: string,
-    audio: string,
-}
+  kana: string;
+  romaji: string;
+  audio: string;
+};

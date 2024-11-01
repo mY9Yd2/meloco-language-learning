@@ -5,7 +5,7 @@
  * @returns Returns the random element
  */
 function sample<Type>(array: Array<Type>): Type {
-    return array[Math.floor(Math.random() * array.length)];
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 export default sample;

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { Kana } from '../japanese/kanaType';
+import type { Kana } from '@/japanese/kanaType';
 import { useRoute } from 'vue-router';
 
 const table = ref<HTMLTableElement | null>(null);
 const targetAudio = ref<HTMLAudioElement>(new Audio());
 defineProps<{
   categories: {
-    name: string,
-    category: Kana[],
-  }[],
-  selectViewName: string,
+    name: string;
+    category: Kana[];
+  }[];
+  selectViewName: string;
 }>();
 const route = useRoute();
 
@@ -20,29 +20,29 @@ const route = useRoute();
  * by inserting empty cells into the table
  */
 onMounted(() => {
-    if (route.name === 'hiraganaBasic' || route.name === 'katakanaBasic') {
-        // ya - (empty) - yu - (empty) - yo
-        table.value?.rows[7].insertCell(1);
-        table.value?.rows[7].insertCell(3);
+  if (route.name === 'hiraganaBasic' || route.name === 'katakanaBasic') {
+    // ya - (empty) - yu - (empty) - yo
+    table.value?.rows[7].insertCell(1);
+    table.value?.rows[7].insertCell(3);
 
-        // wa - 3x(empty) - wo
-        table.value?.rows[9].insertCell(1);
-        table.value?.rows[9].insertCell(1);
-        table.value?.rows[9].insertCell(1);
+    // wa - 3x(empty) - wo
+    table.value?.rows[9].insertCell(1);
+    table.value?.rows[9].insertCell(1);
+    table.value?.rows[9].insertCell(1);
 
-        // n (x at the beginning of the new row)
-        const row = table.value?.insertRow();
-        const cell = table.value?.rows[9].cells[5];
-        row?.appendChild(cell!);
-    }
+    // n (x at the beginning of the new row)
+    const row = table.value?.insertRow();
+    const cell = table.value?.rows[9].cells[5];
+    row?.appendChild(cell!);
+  }
 });
 
 /**
  * Play the audio file on src change
  */
-targetAudio.value.oncanplaythrough = (() => {
-    targetAudio.value.play();
-});
+targetAudio.value.oncanplaythrough = () => {
+  targetAudio.value.play();
+};
 
 /**
  * Change the audio source on click
@@ -50,14 +50,12 @@ targetAudio.value.oncanplaythrough = (() => {
  * @param audioSrc - Kana audio source
  */
 function onKanaClick(audioSrc: string) {
-    targetAudio.value.src = audioSrc;
+  targetAudio.value.src = audioSrc;
 }
 </script>
 
 <template>
-  <div
-    class="w-full max-w-screen-sm mx-auto my-4 text-center"
-  >
+  <div class="w-full max-w-screen-sm mx-auto my-4 text-center">
     <router-link
       :to="{ name: selectViewName }"
       class="text-4xl bg-green-700 rounded-lg p-2 block"
@@ -65,15 +63,9 @@ function onKanaClick(audioSrc: string) {
       Select categories
     </router-link>
   </div>
-  <table
-    ref="table"
-    class="w-full max-w-screen-sm mx-auto"
-  >
+  <table ref="table" class="w-full max-w-screen-sm mx-auto">
     <tbody>
-      <tr
-        v-for="category in categories"
-        :key="category.name"
-      >
+      <tr v-for="category in categories" :key="category.name">
         <td
           v-for="kana in category.category"
           :key="kana.kana"

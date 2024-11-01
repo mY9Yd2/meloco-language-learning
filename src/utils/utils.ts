@@ -1,7 +1,4 @@
-import sample from './sample';
-import sampleSize from './sampleSize';
+import sample from '@/utils/sample';
+import sampleSize from '@/utils/sampleSize';
 
-export {
-    sample,
-    sampleSize
-};
+export { sample, sampleSize };
