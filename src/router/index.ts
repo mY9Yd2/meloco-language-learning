@@ -1,19 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import * as hiragana from '@/japanese/hiragana';
 import * as katakana from '@/japanese/katakana';
-import TestCase from '@/components/TestCase.vue';
+import QuizPage from '@/views/QuizPage.vue';
 import HomePage from '@/views/HomePage.vue';
-import KanaTable from '@/views/KanaTable.vue';
-import SelectKanaCategory from '@/views/SelectKanaCategory.vue';
-import NotFound from '@/views/NotFound.vue';
+import KanaTablePage from '@/views/KanaTablePage.vue';
+import SelectKanaCategoryPage from '@/views/SelectKanaCategoryPage.vue';
+import NotFoundPage from '@/views/NotFoundPage.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomePage },
-  { path: '/test', name: 'test', component: TestCase },
+  { path: '/quiz', name: 'quiz', component: QuizPage },
   {
     path: '/list/hiragana/basic',
     name: 'hiraganaBasic',
-    component: KanaTable,
+    component: KanaTablePage,
     props: {
       categories: hiragana.CATEGORIES,
       selectViewName: 'selectHiraganaBasic',
@@ -22,7 +22,7 @@ const routes = [
   {
     path: '/list/hiragana/basic/select',
     name: 'selectHiraganaBasic',
-    component: SelectKanaCategory,
+    component: SelectKanaCategoryPage,
     props: {
       categories: hiragana.CATEGORIES,
     },
@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/list/katakana/basic',
     name: 'katakanaBasic',
-    component: KanaTable,
+    component: KanaTablePage,
     props: {
       categories: katakana.CATEGORIES,
       selectViewName: 'selectKatakanaBasic',
@@ -39,12 +39,12 @@ const routes = [
   {
     path: '/list/katakana/basic/select',
     name: 'selectKatakanaBasic',
-    component: SelectKanaCategory,
+    component: SelectKanaCategoryPage,
     props: {
       categories: katakana.CATEGORIES,
     },
   },
-  { path: '/:pathMatch(.*)', component: NotFound },
+  { path: '/:pathMatch(.*)', component: NotFoundPage },
 ];
 
 const router = createRouter({

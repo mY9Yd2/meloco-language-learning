@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TargetHeader from '@/components/Test/TargetHeader.vue';
-import OptionButtons from '@/components/Test/OptionButtons.vue';
+import ActiveTarget from '@/components/Quiz/ActiveTarget.vue';
+import OptionButtons from '@/components/Quiz/OptionButtons.vue';
 import { onBeforeMount, ref, reactive } from 'vue';
 import { sample, sampleSize } from '@/utils/utils';
 import type { Kana } from '@/japanese/kanaType';
@@ -19,7 +19,7 @@ const routeSelectedCategoriesName: string[] = JSON.parse(
   route.query.selectedCategoriesName as string,
 );
 
-switch (route.query.test) {
+switch (route.query.quiz) {
   case 'selectHiraganaBasic':
     selectedCategories = hiragana.CATEGORIES.filter(category =>
       routeSelectedCategoriesName.includes(category.name),
@@ -31,7 +31,7 @@ switch (route.query.test) {
     );
     break;
   default:
-    throw new Error('There is no implementation for this test');
+    throw new Error('There is no implementation for this quiz');
 }
 
 const selection = Array.from(
@@ -61,18 +61,18 @@ targetAudio.value.oncanplaythrough = () => {
 };
 
 /**
- * Create a new test case before mounting the component
+ * Create a new quiz before mounting the component
  */
 onBeforeMount(() => {
-  createNewTestCase();
+  createNewQuiz();
 });
 
 /**
- * Create a new test case
+ * Create a new quiz
  *
  * The previous target kana cannot be a new target
  */
-function createNewTestCase() {
+function createNewQuiz() {
   options.value = sampleSize(selection, 4);
   target.value = sample(
     options.value.filter(kana => kana.kana !== target.value.kana),
@@ -100,18 +100,18 @@ function onOptionSelectedEvent(kana: string) {
 }
 
 /**
- * Change the audio src before the Header is mounted
+ * Change the audio src before the active target is mounted
  *
  * Only when the study mode is enabled
  */
-function onHeaderMounted() {
+function onTargetMounted() {
   if (isStudyMode) {
     targetAudio.value.src = target.value.audio;
   }
 }
 
 /**
- * Stop the animation and create a new test case
+ * Stop the animation and create a new quiz
  */
 function onAnimationEnd() {
   targetAnimationClass.target__failed = false;
@@ -119,18 +119,18 @@ function onAnimationEnd() {
   targetAnimationClass.animate__bounceOut = false;
   targetAnimationClass.animate__tada = false;
 
-  createNewTestCase();
+  createNewQuiz();
 }
 </script>
 
 <template>
   <div class="flex flex-col justify-evenly h-screen">
-    <TargetHeader
+    <ActiveTarget
       :key="target.kana"
       :class="targetAnimationClass"
       :target="target.kana"
       @on-animation-end="onAnimationEnd"
-      @vue:before-mount="onHeaderMounted"
+      @vue:before-mount="onTargetMounted"
     />
     <OptionButtons
       :options="options"

@@ -29,7 +29,7 @@ const isStartButtonDisabled = computed(
 );
 
 /**
- * Toggle on/off a specific category in the test
+ * Toggle on/off a specific category in the quiz
  *
  * @param category - The name of the category to toggle
  */
@@ -44,7 +44,7 @@ function onCategoryClick(category: string) {
 }
 
 /**
- * Toggle on/off all categories in the test
+ * Toggle on/off all categories in the quiz
  */
 function onCategoryToggleAllClick() {
   if (selectedCategories.value.length === categories.length) {
@@ -62,13 +62,13 @@ function toggleStudyModeClick() {
 }
 
 /**
- * Switch to the test page and pass query parameters for study mode and selected categories
+ * Switch to the quiz page and pass query parameters for study mode and selected categories
  */
-function startTest() {
+function startQuiz() {
   router.push({
-    name: 'test',
+    name: 'quiz',
     query: {
-      test: route.name as string,
+      quiz: route.name as string,
       studyMode: studyMode.value.toString(),
       selectedCategoriesName: JSON.stringify(selectedCategories.value),
     },
@@ -82,7 +82,7 @@ function startTest() {
     <button
       class="bg-[#0d4e0e] disabled:bg-[#4d0c4c] text-[#00ff00] disabled:text-[#7a4a7a] rounded-lg w-full p-2 text-center"
       :disabled="isStartButtonDisabled"
-      @click="startTest"
+      @click="startQuiz"
     >
       Start
     </button>
