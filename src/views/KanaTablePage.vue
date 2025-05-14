@@ -55,7 +55,7 @@ function onKanaClick(audioSrc: string) {
 </script>
 
 <template>
-  <div class="w-full max-w-screen-sm mx-auto my-4 text-center">
+  <div class="w-full max-w-(--breakpoint-sm) mx-auto my-4 text-center">
     <router-link
       :to="{ name: selectViewName }"
       class="text-4xl bg-green-700 rounded-lg p-2 block"
@@ -63,7 +63,7 @@ function onKanaClick(audioSrc: string) {
       Select categories
     </router-link>
   </div>
-  <table ref="table" class="w-full max-w-screen-sm mx-auto">
+  <table ref="table" class="w-full max-w-(--breakpoint-sm) mx-auto">
     <tbody>
       <tr v-for="category in categories" :key="category.name">
         <td
